@@ -1,7 +1,31 @@
 .collection {
-    margin: 15rem 0;
-    grid-column: full-start / full-end;
+  margin: 8rem 0;
+  grid-column: full-start / full-end;
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(6rem, 1fr) [center-start] repeat(
+      8,
+      [col-start] minmax(min-content, 14rem) [col-end]
+    )
+    [center-end] minmax(6rem, 1fr) [full-end];
+
+  grid-gap: 3rem;
+
+  &__gallery {
+    grid-column: col-start 2 / full-end;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    grid-gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-gap: 2rem;
+  }
+}
+
+.sort-by {
+  grid-column: col-start 2 / full-end;
+  justify-self: start;
+}
+
+.filters {
+  padding-left: 1rem;
+  justify-self: start;
+  grid-column: full-start / col-start 2;
 }
