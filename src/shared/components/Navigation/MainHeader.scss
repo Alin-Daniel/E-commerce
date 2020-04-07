@@ -1,0 +1,15 @@
+@import "../../../base";
+.main-header {
+  grid-column: full-start / full-end;
+
+  display: grid;
+  justify-items: center;
+  // background-image: linear-gradient(
+  //    rgba($color-primary, 0.4),
+  //     rgba($color-primary, 0.4)
+  //   ),
+  //   url("../../../public/presentation-images/hero.jpg");
+  background-image: url("../../../public/presentation-images/hero.jpg");
+  background-size: cover;
+  background-position: center;
+}

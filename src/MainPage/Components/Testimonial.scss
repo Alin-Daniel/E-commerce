@@ -1,0 +1,15 @@
+@import '../../base';
+
+.testimonial {
+    grid-column: full-start / full-end;
+    margin-bottom: 15rem;
+    .slick-slide div {
+        margin: 0 2rem;
+    }
+
+    h2 {
+        text-align: center;
+        color: $color-secondary;
+        font-weight: 300;
+    }
+}

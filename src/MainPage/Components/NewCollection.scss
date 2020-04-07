@@ -1,0 +1,16 @@
+@import '../../base';
+
+.new-collection {
+    grid-column: full-start / full-end;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    grid-gap: 6rem;
+    background-color: $color-primary;
+    padding: 3rem 0;
+
+    h2 {
+        grid-column: 1 / -1;
+        justify-self: center;
+        font-weight: 300;
+    }
+}

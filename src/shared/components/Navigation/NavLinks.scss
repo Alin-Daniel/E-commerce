@@ -1,0 +1,44 @@
+@import '../../../base';
+
+ul.navigation-items {
+    list-style: none;
+    display: flex;
+    align-items: center;
+
+    & > * {
+        margin: .5rem;
+    }
+    & li {
+        display: inline-block;
+        position: relative;
+        
+        & a::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            content: '';
+            transition: all .2s;
+            transform: scaleY(0);
+            // background-color: #fff;
+            transform-origin: bottom;
+        }
+
+        & a:hover::after{
+            transform: scaleY(1);
+        }
+        
+        & a {
+            position: relative;
+            z-index: 1;
+            color: $color-secondary;
+            padding: 1rem 2rem;
+            display: inline-block;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 1.4rem;
+        }
+    }
+}
