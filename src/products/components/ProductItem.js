@@ -1,14 +1,16 @@
 import React from "react";
 
+import GalleryCard from "../../shared/components/UIElements/GalleryCard";
 import "./ProductItem.scss";
 
-const ProductItem = props => {
+const ProductItem = (props) => {
   return (
-    <div>
-      <img src={props.src} alt={props.title} />
-      <h3>{props.title}</h3>
-      <span>{props.price}</span>
-    </div>
+    <GalleryCard
+      title={props.title}
+      alt={props.title}
+      price={props.price}
+      imageUrl={props.src}
+    />
   );
 };
 

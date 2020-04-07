@@ -3,12 +3,12 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 
 import MainPage from "./MainPage/Pages/MainPage";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
-import Products from './products/pages/Products';
+import Products from "./products/pages/Products";
 
 import "./App.scss";
 
@@ -16,11 +16,13 @@ const App = () => {
   let routes;
   routes = (
     <Switch>
-      <Route to="/" exact>
-        {/* <Products /> */}
+      <Route path="/" exact>
         <MainPage />
       </Route>
-      <Redirect to='/'/>
+      <Route path="/collection">
+        <Products />
+      </Route>
+      <Redirect path="/" />
     </Switch>
   );
   return (
@@ -28,7 +30,7 @@ const App = () => {
       <Router>
         <MainNavigation />
         {/* <main> */}
-          {routes}
+        {routes}
         {/* </main> */}
       </Router>
     </div>
