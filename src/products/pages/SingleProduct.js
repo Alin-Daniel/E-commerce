@@ -13,7 +13,6 @@ const SingleProduct = (props) => {
   const [singleProduct] = DUMMY_PRODUCTS.filter(
     (prod) => prod.id === prodId.id
   );
-  console.log(singleProduct);
   return (
     <section className="single-product">
       <div className="single-product__card">
@@ -30,15 +29,18 @@ const SingleProduct = (props) => {
           {singleProduct.productDescription}
         </p>
         <div className="single-product__info--colors">
+          <h3 className="heading-3">Colors</h3>
           <Colors colors={singleProduct.colors} />
+        </div>
+        <div className="single-product__info--size">
           <Input type="select" />
+        </div>
 
-          <div className="single-product__info--cart">
-            <Input type="number" />
-            <Button variant="outlined" color="primary">
-              Add To Cart
-            </Button>
-          </div>
+        <div className="single-product__info--cart">
+          <Input type="number" />
+          <Button variant="outlined" color="primary">
+            Add To Cart
+          </Button>
         </div>
       </div>
     </section>

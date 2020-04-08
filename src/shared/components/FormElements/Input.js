@@ -72,19 +72,19 @@ const Input = (props) => {
       id="standard-number"
       label="Number"
       type="number"
-      inputProps = {{min: 0}}
+      inputProps = {{min: 1}}
       InputLabelProps={{
         shrink: true,
       }}
     />
   );
+  
   let input;
 
   switch (props.type) {
     case "select":
       input = select;
       return input;
-      break;
     case "radio":
       input = radio;
       return input;

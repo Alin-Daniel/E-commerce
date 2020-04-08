@@ -23,7 +23,7 @@ const products = [
     type: "men",
     category: 'jeans',
     colors: [{ darkBlue: "#00008B" }, { black: "#000000" }],
-    sizes: ['M', 'L', 'XL'],
+    sizes: ['S','M', 'L', 'XL'],
     price: 42.99
   },
   {
