@@ -38,7 +38,6 @@ const useStyles = makeStyles({
 
 const TestimonialCard = (props) => {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.root} variant="outlined">
@@ -49,20 +48,22 @@ const TestimonialCard = (props) => {
           variant="h5"
           component="h2"
         >
-          I love their design
+          {props.title}
+          {/* I love their design */}
         </Typography>
 
         <Typography className={classes.paragraph} variant="body2" component="p">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+          {props.children}
+          {/* Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam
           temporibus omnis quas eum excepturi veniam necessitatibus laboriosam,
           consequatur in similique voluptatum nostrum optio earum cum explicabo
-          sequi magni, dolores nemo!
+          sequi magni, dolores nemo! */}
         </Typography>
       </CardContent>
       <CardActions>
-      <Avatar className={classes.avatar} alt="Remy Sharp" src={props.avatarUrl}/>
+      {props.src && <Avatar className={classes.avatar} alt="Remy Sharp" src={props.avatarUrl}/>}
       <Typography component="h5" variant="h5">
-           Bob Miller
+           {/* Bob Miller */}
       </Typography>
       </CardActions>
     </Card>

@@ -9,6 +9,7 @@ import {
 import MainPage from "./MainPage/Pages/MainPage";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import Products from "./products/pages/Products";
+import SingleProduct from './products/pages/SingleProduct';
 
 import "./App.scss";
 
@@ -19,10 +20,13 @@ const App = () => {
       <Route path="/" exact>
         <MainPage />
       </Route>
-      <Route path="/collection">
+      <Route path="/collection" exact>
         <Products />
       </Route>
-      <Redirect path="/" />
+      <Route path="/collection/:id">
+        <SingleProduct />
+      </Route>
+      <Redirect to="/" />
     </Switch>
   );
   return (

@@ -2,7 +2,7 @@ export const supportedColors = [
     { darkBlue: "#00008B" },
     { Grey: "#808080" },
     { black: "#000000" },
-    { camelBrown: "#808080" },
+    { camelBrown: "#797979" },
     { white: "f8f8ff" }
   ];
   

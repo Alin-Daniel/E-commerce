@@ -1,18 +1,21 @@
 import React from "react";
+import { Link, useRouteMatch } from "react-router-dom";
 
 import ProductItem from "./ProductItem";
 import "./ProductsList.scss";
 
-const ProductsList = props => {
-  console.log(props.products);
-  return props.products.map(product => {
+const ProductsList = (props) => {
+  const location= useRouteMatch();
+  console.log(location);
+  return props.products.map((product) => {
     return (
-      <ProductItem
-        key={product.id}
-        src={product.productImage}
-        title={product.productTitle}
-        price={product.price}
-      />
+      <Link key={product.id} to={`${location.path}/${product.id}`}>
+        <ProductItem
+          src={product.productImage}
+          title={product.productTitle}
+          price={product.price}
+        />
+      </Link>
     );
   });
 };

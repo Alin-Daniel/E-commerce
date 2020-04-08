@@ -4,6 +4,7 @@ import ProductsList from "../components/ProductsList";
 import DUMMY_PRODUCTS from "../../shared/DUMMY_PRODUCTS";
 import Input from "../../shared/components/FormElements/Input";
 import Colors from "../../shared/components/UIElements/Colors";
+import TestimonialCard from "../../shared/components/UIElements/TestimonialCard";
 import "./Products.scss";
 
 const Products = (props) => {
@@ -15,8 +16,12 @@ const Products = (props) => {
           <Input type="select" />
         </div>
         <div className="filters">
-          <Input type="radio" />
-          <Colors />
+          <TestimonialCard title='Gender'>
+            <Input type="radio" />
+          </TestimonialCard>
+          <TestimonialCard title='Colors' >
+            <Colors />
+          </TestimonialCard>
         </div>
         <div className="collection__gallery">
           <ProductsList products={products} />

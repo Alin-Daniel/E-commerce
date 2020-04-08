@@ -6,7 +6,7 @@ const CustomButton = (props) => {
   const OutlinedButton = withStyles({
     root: {
       fontFamily: ["Lato", "sans-serif"],
-      fontSize: props.fontSize
+      fontSize: props.fontSize,
     },
   })(Button);
 
