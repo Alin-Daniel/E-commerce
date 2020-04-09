@@ -3,7 +3,6 @@ import React from "react";
 import { supportedColors } from "../../DUMMY_PRODUCTS";
 import "./Colors.scss";
 
-
 const Colors = (props) => {
   let availableColors = props.colors || supportedColors;
   availableColors = availableColors.map((obj) => {
@@ -16,6 +15,7 @@ const Colors = (props) => {
     <div className="colors">
       {availableColors.map((color) => (
         <span
+          onClick={props.clicked}
           key={color}
           style={{ backgroundColor: color }}
           className="color"

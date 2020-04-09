@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import Colors from "../UIElements/Colors";
 
 import "./Input.scss";
 
@@ -26,23 +27,81 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const inputReducer = (state, action) => {
+  switch (action.type) {
+    case "CHANGE":
+      return {
+        ...state,
+        value: action.value,
+      };
+    case "TOUCH":
+      return {
+        ...state,
+        isTouched: true,
+      };
+    case "CHANGE_COLOR":
+      return {
+        ...state,
+        value: action.value,
+      };
+    default:
+      return state;
+  }
+};
+
 const Input = (props) => {
   const classes = useStyles();
+  const [inputState, dispatch] = useReducer(inputReducer, {
+    value: props.initialValue || "",
+    isTouched: false
+  });
+  console.log(props);
+
+  const changeHandler = (event) => {
+    dispatch({
+      type: "CHANGE",
+      value: event.target.value,
+    });
+  };
+
+  const clickHandler = (event) => {
+    dispatch({
+      type: "CHANGE_COLOR",
+      value: event.target.style.backgroundColor,
+    });
+    dispatch({
+      type: "TOUCH",
+    });
+  };
+
+  const touchHandler = (event) => {
+    dispatch({
+      type: "TOUCH",
+    });
+  };
+
   const select = (
     <FormControl className={classes.root} className={classes.formControl}>
-      <InputLabel htmlFor="age-native-helper">Sort by:</InputLabel>
+      <InputLabel htmlFor={props.id}>{props.label || "Sort By"}:</InputLabel>
       <NativeSelect
-        //   value={state.age}
-        //   onChange={handleChange}
+        value={inputState.value}
+        onChange={changeHandler}
+        onBlur={touchHandler}
         inputProps={{
-          name: "age",
-          id: "age-native-helper",
+          name: props.name,
+          id: props.id,
+          // id: "age-native-helper",
         }}
       >
-        <option aria-label="None" value="" />
+        {props.options && props.options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+        {/* <option aria-label="None" value="" />
         <option value="recent">Recent</option>
         <option value="ascending">Ascending(A - Z)</option>
-        <option value="descending">Descending(Z - A)</option>
+        <option value="descending">Descending(Z - A)</option> */}
       </NativeSelect>
     </FormControl>
   );
@@ -50,10 +109,10 @@ const Input = (props) => {
     <FormControl className={classes.root} component="fieldset">
       <FormLabel component="legend"></FormLabel>
       <RadioGroup
-        aria-label="gender"
-        name="gender"
-        // value={value}
-        // onChange={handleChange}
+        aria-label={props.name}
+        name={props.name}
+        value={inputState.value}
+        onChange={changeHandler}
       >
         <FormControlLabel value="female" control={<Radio />} label="Female" />
         <FormControlLabel value="male" control={<Radio />} label="Male" />
@@ -62,23 +121,31 @@ const Input = (props) => {
   );
   const checkBox = (
     <Checkbox
-      //   checked={checked}
-      //   onChange={handleChange}
+      checked={props.checked}
+      onChange={changeHandler}
       inputProps={{ "aria-label": "primary checkbox" }}
     />
   );
   const number = (
     <TextField
-      id="standard-number"
-      label="Number"
+      // id="standard-number"
+      id={props.id}
+      label={props.label}
       type="number"
-      inputProps = {{min: 1}}
+      value={inputState.value}
+      onChange={changeHandler}
+      onBlur={touchHandler}
+      inputProps={{
+        min: 1,
+      }}
       InputLabelProps={{
         shrink: true,
       }}
     />
   );
-  
+
+  const colors = <Colors clicked={clickHandler} {...props} />;
+
   let input;
 
   switch (props.type) {
@@ -93,6 +160,9 @@ const Input = (props) => {
       return input;
     case "number":
       input = number;
+      return input;
+    case "colors":
+      input = colors;
       return input;
     default:
       break;
