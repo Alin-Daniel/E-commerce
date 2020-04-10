@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -10,6 +10,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Colors from "../UIElements/Colors";
+
+import validate from '../../util/validators';
 
 import "./Input.scss";
 
@@ -33,16 +35,12 @@ const inputReducer = (state, action) => {
       return {
         ...state,
         value: action.value,
+        isValid: validate(action.validators, action.value)
       };
     case "TOUCH":
       return {
         ...state,
         isTouched: true,
-      };
-    case "CHANGE_COLOR":
-      return {
-        ...state,
-        value: action.value,
       };
     default:
       return state;
@@ -51,23 +49,33 @@ const inputReducer = (state, action) => {
 
 const Input = (props) => {
   const classes = useStyles();
+
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue || "",
-    isTouched: false
+    isTouched: false,
+    isValid: props.initialValid || false,
   });
-  console.log(props);
+
+  const { value, isValid } = inputState;
+  const { onInput, id } = props;
+
+  useEffect(() => {
+    onInput(id, value, isValid);
+  }, [onInput, value, isValid]);
 
   const changeHandler = (event) => {
     dispatch({
       type: "CHANGE",
       value: event.target.value,
+      validators: props.validators
     });
   };
 
   const clickHandler = (event) => {
     dispatch({
-      type: "CHANGE_COLOR",
+      type: "CHANGE",
       value: event.target.style.backgroundColor,
+      validators: props.validators
     });
     dispatch({
       type: "TOUCH",
@@ -93,11 +101,12 @@ const Input = (props) => {
           // id: "age-native-helper",
         }}
       >
-        {props.options && props.options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
+        {props.options &&
+          props.options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         {/* <option aria-label="None" value="" />
         <option value="recent">Recent</option>
         <option value="ascending">Ascending(A - Z)</option>
@@ -110,6 +119,7 @@ const Input = (props) => {
       <FormLabel component="legend"></FormLabel>
       <RadioGroup
         aria-label={props.name}
+        id={props.id}
         name={props.name}
         value={inputState.value}
         onChange={changeHandler}
@@ -121,6 +131,7 @@ const Input = (props) => {
   );
   const checkBox = (
     <Checkbox
+      id={props.id}
       checked={props.checked}
       onChange={changeHandler}
       inputProps={{ "aria-label": "primary checkbox" }}
@@ -144,7 +155,7 @@ const Input = (props) => {
     />
   );
 
-  const colors = <Colors clicked={clickHandler} {...props} />;
+  const colors = <Colors id={props.id} clicked={clickHandler} {...props} />;
 
   let input;
 
