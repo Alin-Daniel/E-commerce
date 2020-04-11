@@ -12,15 +12,20 @@ const Colors = (props) => {
   });
 
   return (
-    <div className="colors">
-      {availableColors.map((color) => (
-        <span
-          onClick={props.clicked}
-          key={color}
-          style={{ backgroundColor: color }}
-          className="color"
-        ></span>
-      ))}
+    <div className='colors'>
+      <div className="colors__inputs">
+        {availableColors.map((color) => (
+          <span
+            key={color}
+            onClick={props.clicked}
+            style={{ backgroundColor: color }}
+            className="color"
+          ></span>
+        ))}
+      </div>
+      {props.error && (
+        <p className="colors__error-messsage">{props.errorMessage}</p>
+      )}
     </div>
   );
 };

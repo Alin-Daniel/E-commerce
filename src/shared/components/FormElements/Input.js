@@ -2,7 +2,9 @@ import React, { useReducer, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
-import NativeSelect from "@material-ui/core/NativeSelect";
+// import NativeSelect from "@material-ui/core/NativeSelect";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -11,7 +13,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Colors from "../UIElements/Colors";
 
-import validate from '../../util/validators';
+import validate from "../../util/validators";
 
 import "./Input.scss";
 
@@ -35,7 +37,7 @@ const inputReducer = (state, action) => {
       return {
         ...state,
         value: action.value,
-        isValid: validate(action.validators, action.value)
+        isValid: validate(action.validators, action.value),
       };
     case "TOUCH":
       return {
@@ -67,7 +69,7 @@ const Input = (props) => {
     dispatch({
       type: "CHANGE",
       value: event.target.value,
-      validators: props.validators
+      validators: props.validators,
     });
   };
 
@@ -75,7 +77,7 @@ const Input = (props) => {
     dispatch({
       type: "CHANGE",
       value: event.target.style.backgroundColor,
-      validators: props.validators
+      validators: props.validators,
     });
     dispatch({
       type: "TOUCH",
@@ -89,9 +91,14 @@ const Input = (props) => {
   };
 
   const select = (
-    <FormControl className={classes.root} className={classes.formControl}>
+    <FormControl
+      error={!inputState.isValid && inputState.isTouched}
+      className={classes.root}
+      className={classes.formControl}
+    >
       <InputLabel htmlFor={props.id}>{props.label || "Sort By"}:</InputLabel>
-      <NativeSelect
+      <Select
+        native
         value={inputState.value}
         onChange={changeHandler}
         onBlur={touchHandler}
@@ -102,16 +109,27 @@ const Input = (props) => {
         }}
       >
         {props.options &&
-          props.options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
+          props.options.map((option) =>
+            option.ariaLabel ? (
+              <option
+                key={option.value}
+                aria-label={option.ariaLabel}
+                value={option.value}
+              />
+            ) : (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            )
+          )}
         {/* <option aria-label="None" value="" />
         <option value="recent">Recent</option>
         <option value="ascending">Ascending(A - Z)</option>
         <option value="descending">Descending(Z - A)</option> */}
-      </NativeSelect>
+      </Select>
+      <FormHelperText>
+        {!inputState.isValid && inputState.isTouched && props.errorMessage}
+      </FormHelperText>
     </FormControl>
   );
   const radio = (
@@ -123,6 +141,7 @@ const Input = (props) => {
         name={props.name}
         value={inputState.value}
         onChange={changeHandler}
+        error={!inputState.isValid && inputState.isTouched}
       >
         <FormControlLabel value="female" control={<Radio />} label="Female" />
         <FormControlLabel value="male" control={<Radio />} label="Male" />
@@ -133,6 +152,7 @@ const Input = (props) => {
     <Checkbox
       id={props.id}
       checked={props.checked}
+      error={!inputState.isValid && inputState.isTouched}
       onChange={changeHandler}
       inputProps={{ "aria-label": "primary checkbox" }}
     />
@@ -140,6 +160,8 @@ const Input = (props) => {
   const number = (
     <TextField
       // id="standard-number"
+      error={!inputState.isValid && inputState.isTouched}
+      helperText={props.errorMessage}
       id={props.id}
       label={props.label}
       type="number"
@@ -155,7 +177,15 @@ const Input = (props) => {
     />
   );
 
-  const colors = <Colors id={props.id} clicked={clickHandler} {...props} />;
+  const colors = (
+    <Colors
+      error={!inputState.isValid}
+      errorMessage={props.errorMessage}
+      id={props.id}
+      clicked={clickHandler}
+      {...props}
+    />
+  );
 
   let input;
 

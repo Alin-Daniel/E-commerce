@@ -13,7 +13,7 @@ import DUMMY_PRODUCTS from "../../shared/DUMMY_PRODUCTS";
 const SingleProduct = (props) => {
   const [formState, inputHandler] = useForm(
     {
-      productfilter: {
+      productsize: {
         value: "",
         isValid: false,
       },
@@ -55,6 +55,7 @@ const SingleProduct = (props) => {
             initialValue={formState.inputs.colors.value}
             onInput={inputHandler}
             validators={[required()]}
+            errorMessage='Please pick a color'
             type="colors"
             id="colors"
             colors={singleProduct.colors}
@@ -62,14 +63,15 @@ const SingleProduct = (props) => {
         </div>
         <div className="single-product__info--size">
           <Input
-            initialValue={formState.inputs.productfilter.value}
+            initialValue={formState.inputs.productsize.value}
             onInput={inputHandler}
             validators={[required()]}
-            initialValid={true}
-            id="productfilter"
+            errorMessage={'Choose a size'}
+            id="productsize"
             type="select"
             label='Size'
             options={[
+              { value: "", label: "None", ariaLabel: 'None' },
               { value: "S", label: "S" },
               { value: "M", label: "M" },
               { value: "L", label: "L" },
@@ -84,11 +86,13 @@ const SingleProduct = (props) => {
             id="quantity"
             onInput={inputHandler}
             validators={[minLength(1)]}
+            errorMessage='Please enter a valid quantity'
             initialValue={formState.inputs.quantity.value}
             initialValid={true}
+            label='Quantity'
             type="number"
           />
-          <Button validators={[required()]} variant="outlined" color="primary">
+          <Button disabled={!formState.isValid} validators={[required()]} variant="outlined" color="primary">
             Add To Cart
           </Button>
         </div>
