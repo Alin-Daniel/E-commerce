@@ -161,7 +161,9 @@ const Input = (props) => {
     <TextField
       // id="standard-number"
       error={!inputState.isValid && inputState.isTouched}
-      helperText={props.errorMessage}
+      helperText={
+        !inputState.isValid && inputState.isTouched && props.errorMessage
+      }
       id={props.id}
       label={props.label}
       type="number"

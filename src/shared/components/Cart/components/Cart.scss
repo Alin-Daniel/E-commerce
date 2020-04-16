@@ -1,0 +1,65 @@
+@import "../../../../base";
+
+.cart {
+  min-width: 26rem;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  top: 100%;
+  right: 0;
+  background-color: $color-secondary;
+  color: #fff;
+  font-size: 1.2rem;
+
+  &__details {
+    display: flex;
+    margin-bottom: 3rem;
+    &__description {
+      display: flex;
+      flex-direction: column;
+    }
+    .close-button {
+       margin-left: auto;
+       align-self: flex-start;
+    }   
+    p {
+      font-weight: 700;
+      color: $color-grey-light-2;
+    }
+    span {
+      color: $color-grey-light-1;
+    }
+  }
+  &__image {
+    width: 5rem;
+    height: 7rem;
+    margin-right: 2rem;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    color: $color-grey-light-1;
+    font-size: 1.4rem;
+    justify-content: space-around;
+
+    & button {
+        margin-bottom: 1rem;
+    }
+ 
+    &--subtotal {
+      display: flex;
+      justify-content: space-between;
+      .subtotal {
+        font-weight: 400;
+        margin-bottom: 1rem;
+      }
+      .price {
+        color: $color-grey-light-2;
+        font-weight: 700;
+      }
+    }
+
+  }
+}
