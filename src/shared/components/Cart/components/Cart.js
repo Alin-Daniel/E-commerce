@@ -1,4 +1,5 @@
 import React from "react";
+import {useHistory} from 'react-router-dom';
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 
@@ -7,6 +8,10 @@ import Button from "../../UIElements/Button";
 import "./Cart.scss";
 
 const Cart = (props) => {
+  const history = useHistory();
+  const onRedirectHandler = () => {
+    history.push('/cart');
+  };
   return (
     <div className="shopping-cart">
       <div className="shopping-cart__details">
@@ -24,7 +29,7 @@ const Cart = (props) => {
           <span className="subtotal">SUBTOTAL</span>
           <span className="price">€ 35.00</span>
         </div>
-        <Button variant="outlined">View Cart</Button>
+        <Button clicked={onRedirectHandler} variant="outlined">View Cart</Button>
         <Button variant="contained">Checkout</Button>
       </div>
     </div>

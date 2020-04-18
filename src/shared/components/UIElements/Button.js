@@ -12,13 +12,18 @@ const CustomButton = (props) => {
 
   if (props.link) {
     return (
-      <OutlinedButton disabled={props.disabled} color={props.color}>
+      <OutlinedButton
+        onClick={props.clicked}
+        disabled={props.disabled}
+        color={props.color}
+      >
         {props.children}
       </OutlinedButton>
     );
   }
   return (
     <OutlinedButton
+      onClick={props.clicked}
       variant={props.variant}
       size={props.size}
       color={props.color}

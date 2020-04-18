@@ -16,9 +16,9 @@
     align-items: center;
     justify-items: left;
     grid-template-columns: repeat(4, 1fr);
+    column-gap: 2.5rem;
     border-bottom: 1px solid $color-grey-light-1;
     padding-bottom: 2rem;
-    column-gap: 2.5rem;
   }
 
   &__product--details {
