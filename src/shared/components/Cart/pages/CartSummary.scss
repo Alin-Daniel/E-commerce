@@ -1,0 +1,48 @@
+@import '../../../../base';
+
+.cart-summary {
+  font-size: 1.6rem;
+  grid-column: center-start / center-end;
+  margin-top: 9rem;
+  display: grid;
+  row-gap: 2.5rem;
+
+  & > *:not(:last-child){
+      border-bottom: 1px solid $color-grey-light-1;
+  }
+
+  &__header {
+    display: grid;
+    align-items: center;
+    justify-items: left;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid $color-grey-light-1;
+    padding-bottom: 2rem;
+    column-gap: 2.5rem;
+  }
+
+  &__product--details {
+      display: grid;
+      align-items: center;
+      justify-items: left;
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: 2.5rem;
+
+      &-description {
+          &-info {
+              color: $color-secondary;
+          }
+          & img {
+              width: 8rem;
+              height: 9rem;
+              border: 1px solid black;
+              margin-right: 2rem;
+          }
+          display: flex;
+          align-items: center;
+      }
+  }
+  &__subtotal, &__total {
+    align-items: center;
+  }
+}

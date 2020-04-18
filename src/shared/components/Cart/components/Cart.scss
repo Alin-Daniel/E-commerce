@@ -1,6 +1,6 @@
 @import "../../../../base";
 
-.cart {
+.shopping-cart {
   min-width: 26rem;
   position: absolute;
   display: flex;
@@ -11,9 +11,16 @@
   background-color: $color-secondary;
   color: #fff;
   font-size: 1.2rem;
+  & > *:not(:last-child) {
+    border-bottom: 1px solid $color-grey-light-1;
+  }
 
+  & img {  //testing only
+    border: 1px solid #fff;
+  }
   &__details {
     display: flex;
+    padding-bottom: 2rem;
     margin-bottom: 3rem;
     &__description {
       display: flex;
@@ -45,7 +52,7 @@
     justify-content: space-around;
 
     & button {
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
     }
  
     &--subtotal {
@@ -53,7 +60,7 @@
       justify-content: space-between;
       .subtotal {
         font-weight: 400;
-        margin-bottom: 1rem;
+        margin-bottom: 3rem;
       }
       .price {
         color: $color-grey-light-2;
