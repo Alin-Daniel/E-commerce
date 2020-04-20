@@ -9,7 +9,7 @@ const MainNavigation = props => {
   return (
       <MainHeader>
         <nav className="main-navigation">
-          <NavLinks />
+          <NavLinks cart={props.cart} show={props.show} clicked={props.toggleCart} />
         </nav>
       </MainHeader>
   );

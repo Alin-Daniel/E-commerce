@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import CartModel from "../../shared/components/Cart/components/CartModel";
+import Cart from "../../shared/components/Cart/components/Cart";
 import GalleryCard from "../../shared/components/UIElements/GalleryCard";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/UIElements/Button";
@@ -25,7 +26,7 @@ const SingleProduct = (props) => {
       quantity: {
         value: "1",
         isValid: false,
-      },
+      }
     },
     false
   );
@@ -41,10 +42,13 @@ const SingleProduct = (props) => {
       productDescription: singleProduct.productDescription,
       price: +singleProduct.price,
       color: formState.inputs.colors.value,
-      size: formState.inputs.productsize.value
+      size: formState.inputs.productsize.value,
+      imageUrl: singleProduct.productImage
     };
     const quantity = +formState.inputs.quantity.value;
     CartModel.addProduct(product, quantity);
+    CartModel.getCart();
+    // <Cart cart={}/>
   };
   return (
     <section className="single-product">

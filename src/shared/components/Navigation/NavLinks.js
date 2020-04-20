@@ -20,6 +20,8 @@ const NavLinks = (props) => {
     },
   }))(Badge);
 
+  const products = props.cart && props.cart.products.length;
+
   return (
     <React.Fragment>
       <ul className="navigation-items">
@@ -50,12 +52,12 @@ const NavLinks = (props) => {
           Logout
         </Button>
 
-        <IconButton color="primary" aria-label="cart">
-          <StyledBadge badgeContent={4} color="secondary">
+        <IconButton onClick={props.clicked} color="primary" aria-label="cart">
+          <StyledBadge badgeContent={products} color="secondary">
             <ShoppingCartOutlined fontSize="large" />
           </StyledBadge>
         </IconButton>
-      <Cart />
+      <Cart cart={props.cart} show={props.show}/>
       </ul>
     </React.Fragment>
   );

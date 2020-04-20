@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,12 +9,28 @@ import {
 import MainPage from "./MainPage/Pages/MainPage";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import Products from "./products/pages/Products";
-import SingleProduct from './products/pages/SingleProduct';
-import CartSummary from './shared/components/Cart/pages/CartSummary';
+import SingleProduct from "./products/pages/SingleProduct";
+import CartSummary from "./shared/components/Cart/pages/CartSummary";
+import Cart from "./shared/components/Cart/components/CartModel";
 
 import "./App.scss";
 
 const App = () => {
+  const [showCart, setShowCart] = useState(false);
+  const [cart, setCart] = useState();
+
+  useEffect(() => {
+    setCart(Cart.getCart);
+  }, []);
+  console.log(cart);
+  const toggleShowCartHandler = () => {
+    setShowCart((prevState) => !prevState);
+  };
+
+  // const hideCartHandler = () => {
+  //   setShowCart(false);
+  // };
+
   let routes;
   routes = (
     <Switch>
@@ -36,7 +52,11 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <MainNavigation />
+        <MainNavigation
+          cart={cart}
+          show={showCart}
+          toggleCart={toggleShowCartHandler}
+        />
         {/* <main> */}
         {routes}
         {/* </main> */}
