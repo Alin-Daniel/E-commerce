@@ -22,7 +22,8 @@ const App = () => {
   useEffect(() => {
     setCart(Cart.getCart);
   }, []);
-  console.log(cart);
+
+  // console.log(cart);
   const toggleShowCartHandler = () => {
     setShowCart((prevState) => !prevState);
   };
@@ -30,6 +31,11 @@ const App = () => {
   // const hideCartHandler = () => {
   //   setShowCart(false);
   // };
+
+  const addProductHandler = (cart) => {
+    setCart(cart);
+    console.log(cart);
+  };
 
   let routes;
   routes = (
@@ -44,7 +50,7 @@ const App = () => {
         <Products />
       </Route>
       <Route path="/collection/:id">
-        <SingleProduct />
+        <SingleProduct addProduct={addProductHandler}/>
       </Route>
       <Redirect to="/" />
     </Switch>

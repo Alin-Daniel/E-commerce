@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
+import CartModel from "./CartModel";
 
 import Button from "../../UIElements/Button";
 
@@ -12,12 +13,14 @@ const Cart = (props) => {
   const onRedirectHandler = () => {
     history.push("/cart");
   };
+
+  console.log(props.cart);
   const hasProducts = props.cart && props.cart.products.length > 0;
-  let cart = (
+  let shoppingCart = (
     <React.Fragment>
       {props.cart &&
         props.cart.products.map((prod) => (
-          <div className="shopping-cart__details">
+          <div key={prod.product.id} className="shopping-cart__details">
             <img
               className="shopping-cart__image"
               src={prod.product.imageUrl}
@@ -29,7 +32,13 @@ const Cart = (props) => {
                 {prod.quantity} x € {prod.product.price}
               </span>
             </div>
-            <IconButton className="close-button" aria-label="close">
+            <IconButton
+              onClick={() =>
+                CartModel.deleteProduct(prod.product.id, prod.product.price)
+              }
+              className="close-button"
+              aria-label="close"
+            >
               <CloseIcon />
             </IconButton>
           </div>
@@ -49,7 +58,7 @@ const Cart = (props) => {
   );
   return props.show ? (
     <div className="shopping-cart">
-      {hasProducts ? cart : <p>No products in cart</p>}
+      {hasProducts ? shoppingCart : <p>No products in cart</p>}
     </div>
   ) : null;
 };

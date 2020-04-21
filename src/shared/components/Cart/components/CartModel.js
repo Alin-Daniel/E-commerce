@@ -9,7 +9,7 @@ class CartModel {
 
     // let cart = { products: [], totalPrice: 0 };
     const productIndex = cart.products.findIndex(
-      (prod) => prod.id === product.id
+      (prod) => prod.product.id === product.id
     );
     const existingProduct = cart.products[productIndex];
 
@@ -33,18 +33,18 @@ class CartModel {
 
   static deleteProduct(productId, productPrice) {
     let cart = this.getCart();
-
+    
     if (!cart) {
-      cart = { products: [], totalPrice: 0 };
+      return;
     }
-
+    
     const updatedCart = { ...cart };
-    const product = updatedCart.products.find((prod) => prod.id === productId);
+    const product = updatedCart.products.find(prod => prod.product.id === productId);
     const quantity = product.quantity;
-    updatedCart.products.filter((prod) => prod.id !== productId);
+    updatedCart.products = updatedCart.products.filter((prod) => prod.product.id !== productId);
     updatedCart.totalPrice = updatedCart.totalPrice - productPrice * quantity;
     // save cart to local storage
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   }
 
   static editQuantity(productId, quantity){

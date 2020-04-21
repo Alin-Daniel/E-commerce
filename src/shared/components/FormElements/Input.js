@@ -63,7 +63,7 @@ const Input = (props) => {
 
   useEffect(() => {
     onInput(id, value, isValid);
-  }, [onInput, value, isValid]);
+  }, [onInput, value, isValid, id]);
 
   const changeHandler = (event) => {
     dispatch({
@@ -93,8 +93,7 @@ const Input = (props) => {
   const select = (
     <FormControl
       error={!inputState.isValid && inputState.isTouched}
-      className={classes.root}
-      className={classes.formControl}
+      className={`${classes.root} ${classes.formControl}`}
     >
       <InputLabel htmlFor={props.id}>{props.label || "Sort By"}:</InputLabel>
       <Select

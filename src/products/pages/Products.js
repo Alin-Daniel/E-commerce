@@ -10,7 +10,7 @@ import { noValidate } from "../../shared/util/validators";
 import "./Products.scss";
 
 const Products = (props) => {
-  const [products, setProducts] = useState(DUMMY_PRODUCTS);
+  const [products] = useState(DUMMY_PRODUCTS);
   const [formState, inputHandler] = useForm(
     {
       gender: {

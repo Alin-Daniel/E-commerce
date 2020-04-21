@@ -2,15 +2,14 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import CartModel from "../../shared/components/Cart/components/CartModel";
-import Cart from "../../shared/components/Cart/components/Cart";
 import GalleryCard from "../../shared/components/UIElements/GalleryCard";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/UIElements/Button";
 import useForm from "../../shared/hooks/use-form";
 import { required, minLength } from "../../shared/util/validators";
 import "./SingleProduct.scss";
-// import Colors from "../../shared/components/UIElements/Colors";
 import DUMMY_PRODUCTS from "../../shared/DUMMY_PRODUCTS";
+// import Colors from "../../shared/components/UIElements/Colors";
 
 const SingleProduct = (props) => {
   const [formState, inputHandler] = useForm(
@@ -47,9 +46,10 @@ const SingleProduct = (props) => {
     };
     const quantity = +formState.inputs.quantity.value;
     CartModel.addProduct(product, quantity);
-    CartModel.getCart();
-    // <Cart cart={}/>
+    const cart = CartModel.getCart();
+    props.addProduct(cart)
   };
+
   return (
     <section className="single-product">
       <div className="single-product__card">

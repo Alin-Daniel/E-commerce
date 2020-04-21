@@ -6,9 +6,11 @@ import "./Colors.scss";
 const Colors = (props) => {
   let availableColors = props.colors || supportedColors;
   availableColors = availableColors.map((obj) => {
+    let color;
     for (let key in obj) {
-      return obj[key];
+      color = obj[key];
     }
+    return color;
   });
 
   return (
