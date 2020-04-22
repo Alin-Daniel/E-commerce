@@ -12,12 +12,14 @@ import Products from "./products/pages/Products";
 import SingleProduct from "./products/pages/SingleProduct";
 import CartSummary from "./shared/components/Cart/pages/CartSummary";
 import Cart from "./shared/components/Cart/components/CartModel";
+import Auth from "./user/pages/Auth";
 
 import "./App.scss";
 
 const App = () => {
   const [showCart, setShowCart] = useState(false);
   const [cart, setCart] = useState();
+  const [authModal, setAuthModal] = useState(false);
 
   useEffect(() => {
     setCart(Cart.getCart);
@@ -28,6 +30,13 @@ const App = () => {
     setShowCart((prevState) => !prevState);
   };
 
+  const showAuthModalHandler = () => {
+    setAuthModal(true);
+  };
+  const closeAuthModalHandler = () => {
+    setAuthModal(false);
+  };
+
   // const hideCartHandler = () => {
   //   setShowCart(false);
   // };
@@ -35,6 +44,10 @@ const App = () => {
   const addProductHandler = (cart) => {
     setCart(cart);
     console.log(cart);
+  };
+
+  const deleteProductHandler = () => {
+    setCart(Cart.getCart());
   };
 
   let routes;
@@ -50,7 +63,7 @@ const App = () => {
         <Products />
       </Route>
       <Route path="/collection/:id">
-        <SingleProduct addProduct={addProductHandler}/>
+        <SingleProduct addProduct={addProductHandler} />
       </Route>
       <Redirect to="/" />
     </Switch>
@@ -61,8 +74,13 @@ const App = () => {
         <MainNavigation
           cart={cart}
           show={showCart}
+          showAuthModal={showAuthModalHandler}
           toggleCart={toggleShowCartHandler}
+          deleteProduct={deleteProductHandler}
         />
+        {authModal && (
+          <Auth handleClose={closeAuthModalHandler} open={authModal} />
+        )}
         {/* <main> */}
         {routes}
         {/* </main> */}

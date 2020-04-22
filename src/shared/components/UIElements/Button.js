@@ -16,11 +16,27 @@ const CustomButton = (props) => {
         onClick={props.clicked}
         disabled={props.disabled}
         color={props.color}
+        size={props.size}
       >
         {props.children}
       </OutlinedButton>
     );
   }
+
+  if (props.full) {
+    return (
+      <Button
+        onClick={props.clicked}
+        disabled={props.disabled}
+        color={props.color || 'primary'}
+        variant= 'contained'
+        size={props.size}
+      >
+        {props.children}
+      </Button>
+    );
+  }
+
   return (
     <OutlinedButton
       onClick={props.clicked}

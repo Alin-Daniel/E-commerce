@@ -13,7 +13,7 @@ const settings = {
   infinite: true,
   speed: 500,
   slidesToShow: 3,
-  slidesToScroll: 1
+  slidesToScroll: 1,
 };
 
 const Testimonial = (props) => {
@@ -21,12 +21,42 @@ const Testimonial = (props) => {
     <section className="testimonial">
       <h2 className="heading-2 mb-xl">Happy Customers</h2>
       <Slider {...settings} className="testimonial__items">
-          <TestimonialCard avatarUrl={Avatar1} />
-          <TestimonialCard avatarUrl={Avatar1} />
-          <TestimonialCard avatarUrl={Avatar1} />
-          <TestimonialCard avatarUrl={Avatar1} />
-          <TestimonialCard avatarUrl={Avatar1} />
-          <TestimonialCard avatarUrl={Avatar1} />
+        <TestimonialCard info='Bob Miller' src={Avatar1}>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+          temporibus omnis quas eum excepturi veniam necessitatibus laboriosam,
+          consequatur in similique voluptatum nostrum optio earum cum explicabo
+          sequi magni, dolores nemo!{" "}
+        </TestimonialCard>
+        <TestimonialCard info='Bob Miller' src={Avatar1}>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+          temporibus omnis quas eum excepturi veniam necessitatibus laboriosam,
+          consequatur in similique voluptatum nostrum optio earum cum explicabo
+          sequi magni, dolores nemo!{" "}
+        </TestimonialCard>
+        <TestimonialCard info='Bob Miller' src={Avatar1}>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+          temporibus omnis quas eum excepturi veniam necessitatibus laboriosam,
+          consequatur in similique voluptatum nostrum optio earum cum explicabo
+          sequi magni, dolores nemo!{" "}
+        </TestimonialCard>
+        <TestimonialCard info='Bob Miller' src={Avatar1}>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+          temporibus omnis quas eum excepturi veniam necessitatibus laboriosam,
+          consequatur in similique voluptatum nostrum optio earum cum explicabo
+          sequi magni, dolores nemo!{" "}
+        </TestimonialCard>
+        <TestimonialCard info='Bob Miller' src={Avatar1}>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+          temporibus omnis quas eum excepturi veniam necessitatibus laboriosam,
+          consequatur in similique voluptatum nostrum optio earum cum explicabo
+          sequi magni, dolores nemo!{" "}
+        </TestimonialCard>
+        <TestimonialCard info='Bob Miller' src={Avatar1}>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+          temporibus omnis quas eum excepturi veniam necessitatibus laboriosam,
+          consequatur in similique voluptatum nostrum optio earum cum explicabo
+          sequi magni, dolores nemo!
+        </TestimonialCard>
       </Slider>
     </section>
   );

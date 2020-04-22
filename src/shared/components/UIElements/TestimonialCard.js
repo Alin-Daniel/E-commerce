@@ -61,9 +61,9 @@ const TestimonialCard = (props) => {
         </Typography>
       </CardContent>
       <CardActions>
-      {props.src && <Avatar className={classes.avatar} alt="Remy Sharp" src={props.avatarUrl}/>}
+      {props.src && <Avatar className={classes.avatar} alt="Remy Sharp" src={props.src}/>}
       <Typography component="h5" variant="h5">
-           {/* Bob Miller */}
+           {props.info}
       </Typography>
       </CardActions>
     </Card>

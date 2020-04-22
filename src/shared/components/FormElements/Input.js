@@ -178,6 +178,30 @@ const Input = (props) => {
     />
   );
 
+  const text = (
+    <div className="form-control">
+      <TextField
+        error={!inputState.isValid && inputState.isTouched}
+        helperText={
+          !inputState.isValid && inputState.isTouched && props.errorMessage
+        }
+        required
+        type={props.inputType} // password etc.
+        id={props.id}
+        label={props.label}
+        placeholder={props.placeholder}
+        value={inputState.value}
+        onChange={changeHandler}
+        onBlur={touchHandler}
+        fullWidth
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+    </div>
+  );
+
   const colors = (
     <Colors
       error={!inputState.isValid}
@@ -206,8 +230,12 @@ const Input = (props) => {
     case "colors":
       input = colors;
       return input;
+    case "text":
+      input = text;
+      return input;
     default:
-      break;
+      input = text;
+      return input;
   }
 };
 

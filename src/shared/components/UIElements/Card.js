@@ -35,12 +35,12 @@ const ImgCard = (props) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {/* {props.title} */}
-            Title
+            {props.title}
+            {/* Title */}
           </Typography>
           <Typography gutterBottom variant="body1" component="h2">
-            {/* {props.children} */}
-          € 100
+            {props.children}
+          {/* € 100 */}
           </Typography>
           {/* <Typography variant="body2" color="textSecondary" component="p">
             Lizards are a widespread group of squamate reptiles, with over 6,000

@@ -47,7 +47,7 @@ const SingleProduct = (props) => {
     const quantity = +formState.inputs.quantity.value;
     CartModel.addProduct(product, quantity);
     const cart = CartModel.getCart();
-    props.addProduct(cart)
+    props.addProduct(cart);
   };
 
   return (

@@ -8,6 +8,7 @@ import ShoppingCartOutlined from "@material-ui/icons/ShoppingCartOutlined";
 
 import Button from "../UIElements/Button";
 import Cart from "../Cart/components/Cart";
+
 import "./NavLinks.scss";
 
 const NavLinks = (props) => {
@@ -39,9 +40,19 @@ const NavLinks = (props) => {
         <li>
           <NavLink to="/collection">Collection</NavLink>
         </li>
-        <li>
-          <NavLink to="/auth">Login</NavLink>
-        </li>
+        {/* <li>
+          <NavLink onClick={props.showAuthModal} to="/">Login</NavLink>
+        </li> */}
+        <Button
+          clicked={props.showAuthModal}
+          fontSize="1.4rem"
+          link
+          color="primary"
+          variant="outlined"
+          size="large"
+        >
+          Login
+        </Button>
         <Button
           fontSize="1.4rem"
           link
@@ -57,7 +68,11 @@ const NavLinks = (props) => {
             <ShoppingCartOutlined fontSize="large" />
           </StyledBadge>
         </IconButton>
-      <Cart cart={props.cart} show={props.show}/>
+        <Cart
+          cart={props.cart}
+          show={props.show}
+          deleteProduct={props.deleteProduct}
+        />
       </ul>
     </React.Fragment>
   );

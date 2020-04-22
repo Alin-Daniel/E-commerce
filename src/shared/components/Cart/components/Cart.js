@@ -14,6 +14,11 @@ const Cart = (props) => {
     history.push("/cart");
   };
 
+  const deleteProduct = (productId, productPrice) => {
+    CartModel.deleteProduct(productId, productPrice);
+    props.deleteProduct();
+  };
+
   console.log(props.cart);
   const hasProducts = props.cart && props.cart.products.length > 0;
   let shoppingCart = (
@@ -33,9 +38,9 @@ const Cart = (props) => {
               </span>
             </div>
             <IconButton
-              onClick={() =>
-                CartModel.deleteProduct(prod.product.id, prod.product.price)
-              }
+              onClick={() => {
+                deleteProduct(prod.product.id, prod.product.price);
+              }}
               className="close-button"
               aria-label="close"
             >

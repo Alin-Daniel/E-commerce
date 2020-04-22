@@ -8,14 +8,14 @@ const TrendingCollection = (props) => {
   return (
     <section className="trending-collection">
       <h2 className='heading-2 mb-md'>Latest Trends</h2>
-      <GalleryCard imageUrl={Image1} />
-      <GalleryCard imageUrl={Image1} />
-      <GalleryCard imageUrl={Image1} />
-      <GalleryCard imageUrl={Image1} />
-      <GalleryCard imageUrl={Image1} />
-      <GalleryCard imageUrl={Image1} />
-      <GalleryCard imageUrl={Image1} />
-      <GalleryCard imageUrl={Image1} />
+      <GalleryCard title='Product' price={50} imageUrl={Image1} />
+      <GalleryCard title='Product' price={50} imageUrl={Image1} />
+      <GalleryCard title='Product' price={50} imageUrl={Image1} />
+      <GalleryCard title='Product' price={50} imageUrl={Image1} />
+      <GalleryCard title='Product' price={50} imageUrl={Image1} />
+      <GalleryCard title='Product' price={50} imageUrl={Image1} />
+      <GalleryCard title='Product' price={50} imageUrl={Image1} />
+      <GalleryCard title='Product' price={50} imageUrl={Image1} />
     </section>
   );
 };

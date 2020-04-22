@@ -5,13 +5,19 @@ import NavLinks from "./NavLinks";
 
 import "./MainNavigation.scss";
 
-const MainNavigation = props => {
+const MainNavigation = (props) => {
   return (
-      <MainHeader>
-        <nav className="main-navigation">
-          <NavLinks cart={props.cart} show={props.show} clicked={props.toggleCart} />
-        </nav>
-      </MainHeader>
+    <MainHeader>
+      <nav className="main-navigation">
+        <NavLinks
+          cart={props.cart}
+          show={props.show}
+          showAuthModal={props.showAuthModal}
+          clicked={props.toggleCart}
+          deleteProduct={props.deleteProduct}
+        />
+      </nav>
+    </MainHeader>
   );
 };
 
