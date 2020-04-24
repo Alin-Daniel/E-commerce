@@ -15,7 +15,8 @@ const styles = (theme) => ({
     margin: 0,
     padding: theme.spacing(2),
     width: '50vw',
-    height: '20vh'
+    height: '20vh',
+    fontSize: '2rem'
   },
   closeButton: {
     position: "absolute",
@@ -75,7 +76,7 @@ const Modal = (props) => {
         open={props.open}
       >
         <DialogTitle id="customized-dialog-title" onClose={props.handleClose}>
-          Modal title
+         {props.title}
         </DialogTitle>
         <DialogContent>{props.children}</DialogContent>
         <DialogActions>

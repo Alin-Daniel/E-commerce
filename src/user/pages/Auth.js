@@ -3,7 +3,7 @@ import Modal from "../../shared/components/UIElements/Modal";
 import Input from "../../shared/components/FormElements/Input";
 import useForm from "../../shared/hooks/use-form";
 import { isEMail, minLength } from "../../shared/util/validators";
-import Button from '../../shared/components/UIElements/Button';
+import Button from "../../shared/components/UIElements/Button";
 
 import "./Auth.scss";
 
@@ -20,8 +20,12 @@ const Auth = (props) => {
   });
 
   return (
-    <Modal handleClose={props.handleClose} open={props.open}>
-      <form action="">
+    <Modal
+      title="Authenticate"
+      handleClose={props.handleClose}
+      open={props.open}
+    >
+      <form className='auth-form' action="">
         <Input
           placeholder="example@email.com"
           id="email"

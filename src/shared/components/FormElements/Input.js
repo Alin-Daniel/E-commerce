@@ -22,6 +22,14 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Lato",
     fontSize: "1.4rem",
   },
+  helperText: {
+    fontFamily: "Lato",
+    fontSize: "1rem",
+  },
+  selectIcon: {
+    width: "1.5em",
+    height: "1.5em",
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -95,8 +103,11 @@ const Input = (props) => {
       error={!inputState.isValid && inputState.isTouched}
       className={`${classes.root} ${classes.formControl}`}
     >
-      <InputLabel htmlFor={props.id}>{props.label || "Sort By"}:</InputLabel>
+      <InputLabel classes={{ root: classes.root }} htmlFor={props.id}>
+        {props.label || "Sort By"}:
+      </InputLabel>
       <Select
+        classes={{ root: classes.root, icon: classes.selectIcon }}
         native
         value={inputState.value}
         onChange={changeHandler}
@@ -104,7 +115,6 @@ const Input = (props) => {
         inputProps={{
           name: props.name,
           id: props.id,
-          // id: "age-native-helper",
         }}
       >
         {props.options &&
@@ -126,7 +136,7 @@ const Input = (props) => {
         <option value="ascending">Ascending(A - Z)</option>
         <option value="descending">Descending(Z - A)</option> */}
       </Select>
-      <FormHelperText>
+      <FormHelperText classes={{root: classes.helperText}}>
         {!inputState.isValid && inputState.isTouched && props.errorMessage}
       </FormHelperText>
     </FormControl>
@@ -140,10 +150,20 @@ const Input = (props) => {
         name={props.name}
         value={inputState.value}
         onChange={changeHandler}
-        error={!inputState.isValid && inputState.isTouched}
+        // error={!inputState.isValid && inputState.isTouched}
       >
-        <FormControlLabel value="female" control={<Radio />} label="Female" />
-        <FormControlLabel value="male" control={<Radio />} label="Male" />
+        <FormControlLabel
+          classes={{ label: classes.root }}
+          value="female"
+          control={<Radio />}
+          label="Female"
+        />
+        <FormControlLabel
+          classes={{ label: classes.root }}
+          value="male"
+          control={<Radio />}
+          label="Male"
+        />
       </RadioGroup>
     </FormControl>
   );
@@ -158,6 +178,11 @@ const Input = (props) => {
   );
   const number = (
     <TextField
+    FormHelperTextProps={{ classes: { root: classes.helperText } }}
+    InputLabelProps={{
+      shrink: true,
+      classes: { root: classes.root },
+    }}
       // id="standard-number"
       error={!inputState.isValid && inputState.isTouched}
       helperText={
@@ -181,12 +206,14 @@ const Input = (props) => {
   const text = (
     <div className="form-control">
       <TextField
+        InputProps={{ className: classes.root }}
         error={!inputState.isValid && inputState.isTouched}
         helperText={
           !inputState.isValid && inputState.isTouched && props.errorMessage
         }
+        FormHelperTextProps={{ classes: { root: classes.helperText } }}
         required
-        type={props.inputType} // password etc.
+        type={props.inputType} // email / password etc.
         id={props.id}
         label={props.label}
         placeholder={props.placeholder}
@@ -197,6 +224,7 @@ const Input = (props) => {
         margin="normal"
         InputLabelProps={{
           shrink: true,
+          classes: { root: classes.root },
         }}
       />
     </div>
