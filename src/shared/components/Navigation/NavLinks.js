@@ -47,27 +47,25 @@ const NavLinks = (props) => {
           clicked={props.showAuthModal}
           fontSize="1.4rem"
           link
-          color="primary"
-          variant="outlined"
-          size="large"
+          // color="primary"
+          // variant="outlined"
         >
           Login
         </Button>
         <Button
           fontSize="1.4rem"
           link
-          color="primary"
-          variant="outlined"
-          size="large"
+          // color="primary"
+          // variant="outlined"
         >
           Logout
         </Button>
-
-        <IconButton onClick={props.clicked} color="primary" aria-label="cart">
+        <Button products={products} clicked={props.clicked} shoppingCart></Button>
+        {/* <IconButton onClick={props.clicked} color="primary" aria-label="cart">
           <StyledBadge badgeContent={products} color="secondary">
             <ShoppingCartOutlined fontSize="large" />
           </StyledBadge>
-        </IconButton>
+        </IconButton> */}
         <Cart
           cart={props.cart}
           show={props.show}
