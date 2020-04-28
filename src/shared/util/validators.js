@@ -21,7 +21,7 @@ export const maxLength = (val) => {
     val: val,
   };
 };
-export const isEMail = () => {
+export const isEmail = () => {
   return {
     type: IS_EMAIL,
   };
@@ -45,10 +45,10 @@ const validate = (validators, inputValue) => {
       isValid = isValid && inputValue.trim() !== "";
     }
     if (validator.type === MIN_LENGTH) {
-      isValid = isValid && +inputValue >= validator.val;
+      isValid = isValid && inputValue.trim().length >= validator.val;
     }
     if (validator.type === MAX_LENGTH) {
-      isValid = isValid && +inputValue <= validator.val;
+      isValid = isValid && inputValue.trim().length <= validator.val;
     }
     if (validator.type === IS_EMAIL) {
       const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

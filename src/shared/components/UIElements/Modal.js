@@ -1,7 +1,6 @@
 import React from "react";
 
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
@@ -14,9 +13,10 @@ const styles = (theme) => ({
   root: {
     margin: 0,
     padding: theme.spacing(2),
-    width: '50vw',
-    height: '20vh',
-    fontSize: '2rem'
+    // width: '50vw',
+    // height: '20vh',
+    fontSize: "1.4rem",
+    fontFamily: "Lato",
   },
   closeButton: {
     position: "absolute",
@@ -27,9 +27,9 @@ const styles = (theme) => ({
 });
 
 const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
+  const { children, classes, onClose } = props;
   return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+    <MuiDialogTitle disableTypography className={classes.root}>
       <Typography variant="h4">{children}</Typography>
       {onClose ? (
         <IconButton
@@ -71,18 +71,19 @@ const Modal = (props) => {
   return (
     <div>
       <Dialog
+      
         onClose={props.handleClose}
         aria-labelledby="customized-dialog-title"
         open={props.open}
       >
         <DialogTitle id="customized-dialog-title" onClose={props.handleClose}>
-         {props.title}
+          {props.title}
         </DialogTitle>
         <DialogContent>{props.children}</DialogContent>
         <DialogActions>
-          {/* <Button autoFocus onClick={handleClose} color="primary">
-            Save changes
-          </Button> */}
+        {/* <Button autoFocus onClick={handleClose} color="primary">
+      Save changes
+    </Button> */}
         </DialogActions>
       </Dialog>
     </div>

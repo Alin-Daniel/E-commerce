@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "../../shared/components/UIElements/Modal";
 import Input from "../../shared/components/FormElements/Input";
 import useForm from "../../shared/hooks/use-form";
-import { isEMail, minLength } from "../../shared/util/validators";
+import { isEmail, minLength } from "../../shared/util/validators";
 import Button from "../../shared/components/UIElements/Button";
 
 import "./Auth.scss";
@@ -17,7 +17,7 @@ const Auth = (props) => {
       value: "",
       isValid: false,
     },
-  });
+  }, false);
 
   return (
     <Modal
@@ -32,7 +32,7 @@ const Auth = (props) => {
           label="E-mail"
           type="text"
           onInput={inputHandler}
-          validators={[isEMail()]}
+          validators={[isEmail()]}
           errorMessage="Enter a valid mail"
         />
         <Input

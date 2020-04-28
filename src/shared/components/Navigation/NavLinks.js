@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import Badge from "@material-ui/core/Badge";
-import { withStyles } from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
-import ShoppingCartOutlined from "@material-ui/icons/ShoppingCartOutlined";
+// import Badge from "@material-ui/core/Badge";
+// import { withStyles } from "@material-ui/core/styles";
+// import IconButton from "@material-ui/core/IconButton";
+// import ShoppingCartOutlined from "@material-ui/icons/ShoppingCartOutlined";
 
 import Button from "../UIElements/Button";
 import Cart from "../Cart/components/Cart";
@@ -12,14 +12,14 @@ import Cart from "../Cart/components/Cart";
 import "./NavLinks.scss";
 
 const NavLinks = (props) => {
-  const StyledBadge = withStyles((theme) => ({
-    badge: {
-      right: -3,
-      top: 10,
-      border: `2px solid ${theme.palette.background.paper}`,
-      padding: "0 4px",
-    },
-  }))(Badge);
+  // const StyledBadge = withStyles((theme) => ({
+  //   badge: {
+  //     right: -3,
+  //     top: 10,
+  //     border: `2px solid ${theme.palette.background.paper}`,
+  //     padding: "0 4px",
+  //   },
+  // }))(Badge);
 
   const products = props.cart && props.cart.products.length;
 
