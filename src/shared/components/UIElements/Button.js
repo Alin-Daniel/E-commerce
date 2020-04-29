@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  makeStyles,
+  // makeStyles,
   withStyles,
   ThemeProvider,
 } from "@material-ui/core/styles";
@@ -19,6 +19,7 @@ const colors = {
   colorGreyLight2: "#dddddd",
   colorGreyDark1: "#796969",
   colorGreyDark2: "#a7a2a2",
+  colorWhite: '#fff'
 };
 
 const StyledBadge = withStyles((theme) => ({
@@ -31,6 +32,7 @@ const StyledBadge = withStyles((theme) => ({
 }))(Badge);
 
 const CustomButton = (props) => {
+  console.log(props.variant);
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -47,6 +49,24 @@ const CustomButton = (props) => {
       },
     },
   });
+
+  const inverseTheme = createMuiTheme({
+    palette: {
+      primary: {
+        main: colors.colorWhite,
+      },
+      secondary: {
+        main: colors.colorSecondary,
+      },
+    },
+    typography: {
+      fontFamily: ["Lato", "sans-serif", "Helvetica Neue", "Arial"].join(","),
+      button: {
+        fontSize: "1.4rem",
+      },
+    },
+  });
+
   const theme2 = createMuiTheme({
     palette: {
       primary: {
@@ -89,7 +109,7 @@ const CustomButton = (props) => {
 
   if (props.variant === "outlined") {
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={props.inverse ? inverseTheme : theme}>
         <Button
           onClick={props.clicked}
           disabled={props.disabled}
@@ -104,7 +124,7 @@ const CustomButton = (props) => {
   }
   if (props.variant === "full") {
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={props.inverse ? inverseTheme : theme }>
         <Button
           onClick={props.clicked}
           disabled={props.disabled}
@@ -119,7 +139,7 @@ const CustomButton = (props) => {
   }
   if (props.link) {
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={props.inverse ? inverseTheme : theme}>
         <Button
           onClick={props.clicked}
           disabled={props.disabled}

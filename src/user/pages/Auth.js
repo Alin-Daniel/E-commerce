@@ -45,7 +45,7 @@ const Auth = (props) => {
           validators={[minLength(5)]}
           errorMessage="Enter a valid password(min 5 characters)"
         />
-        <Button variant='full'>Login</Button>
+        <Button disabled={!formState.isValid} variant='full'>Login</Button>
       </form>
     </Modal>
   );

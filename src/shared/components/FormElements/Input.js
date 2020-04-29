@@ -197,9 +197,9 @@ const Input = (props) => {
       inputProps={{
         min: 1,
       }}
-      InputLabelProps={{
-        shrink: true,
-      }}
+      // InputLabelProps={{
+      //   shrink: true,
+      // }}
     />
   );
 

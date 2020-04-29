@@ -54,10 +54,10 @@ const Cart = (props) => {
           <span className="subtotal">SUBTOTAL </span>
           <span className="price">€ {props.cart && props.cart.totalPrice}</span>
         </div>
-        <Button clicked={onRedirectHandler} variant="outlined">
+        <Button inverse variant='outlined' clicked={onRedirectHandler}>
           View Cart
         </Button>
-        <Button variant="contained">Checkout</Button>
+        <Button inverse variant="full">Checkout</Button>
       </div>
     </React.Fragment>
   );

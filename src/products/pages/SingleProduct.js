@@ -112,7 +112,6 @@ const SingleProduct = (props) => {
           <Button
             clicked={addProductHandler}
             disabled={!formState.isValid}
-            validators={[required()]}
             variant="outlined"
             color="primary"
           >
