@@ -60,7 +60,11 @@ const NavLinks = (props) => {
         >
           Logout
         </Button>
-        <Button products={products} clicked={props.clicked} shoppingCart></Button>
+        <Button
+          products={products}
+          clicked={props.clicked}
+          shoppingCart
+        ></Button>
         {/* <IconButton onClick={props.clicked} color="primary" aria-label="cart">
           <StyledBadge badgeContent={products} color="secondary">
             <ShoppingCartOutlined fontSize="large" />

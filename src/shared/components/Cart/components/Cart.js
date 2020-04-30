@@ -57,7 +57,7 @@ const Cart = (props) => {
         <Button inverse variant='outlined' clicked={onRedirectHandler}>
           View Cart
         </Button>
-        <Button inverse variant="full">Checkout</Button>
+        <Button inverse variant="contained">Checkout</Button>
       </div>
     </React.Fragment>
   );

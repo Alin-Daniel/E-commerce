@@ -19,7 +19,7 @@ const colors = {
   colorGreyLight2: "#dddddd",
   colorGreyDark1: "#796969",
   colorGreyDark2: "#a7a2a2",
-  colorWhite: '#fff'
+  colorWhite: "#fff",
 };
 
 const StyledBadge = withStyles((theme) => ({
@@ -31,42 +31,26 @@ const StyledBadge = withStyles((theme) => ({
   },
 }))(Badge);
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: colors.colorSecondary,
+    },
+    secondary: {
+      main: "#fff",
+    },
+  },
+  typography: {
+    fontFamily: ["Lato", "sans-serif", "Helvetica Neue", "Arial"].join(","),
+    button: {
+      fontSize: "1.4rem",
+    },
+  },
+});
+
+
 const CustomButton = (props) => {
-  console.log(props.variant);
-  const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: colors.colorSecondary,
-      },
-      secondary: {
-        main: "#fff",
-      },
-    },
-    typography: {
-      fontFamily: ["Lato", "sans-serif", "Helvetica Neue", "Arial"].join(","),
-      button: {
-        fontSize: "1.4rem",
-      },
-    },
-  });
-
-  const inverseTheme = createMuiTheme({
-    palette: {
-      primary: {
-        main: colors.colorWhite,
-      },
-      secondary: {
-        main: colors.colorSecondary,
-      },
-    },
-    typography: {
-      fontFamily: ["Lato", "sans-serif", "Helvetica Neue", "Arial"].join(","),
-      button: {
-        fontSize: "1.4rem",
-      },
-    },
-  });
-
+  
   const theme2 = createMuiTheme({
     palette: {
       primary: {
@@ -77,6 +61,7 @@ const CustomButton = (props) => {
       },
     },
   });
+
   //   const OutlinedButton = withStyles({
   //     root: {
   //       fontFamily: ["Lato", "sans-serif"].join(","),
@@ -84,62 +69,47 @@ const CustomButton = (props) => {
   //     },
   //   })(Button);
 
-  // const FullButton = withStyles({
-  //   root: {
-  //     fontFamily: ["Lato", "sans-serif"].join(','),
-  //     fontSize: props.fontSize,
-  //     backgroundColor: colors.colorSecondary,
-  //     borderColor: colors.colorSecondary,
-  //     color: '#fff',
-  //     "&:hover": {
-  //       backgroundColor: colors.colorSecondary,
-  //       borderColor: colors.colorSecondary,
-  //       boxShadow: "none",
-  //     },
-  //     "&:active": {
-  //       boxShadow: "none",
-  //       backgroundColor: colors.colorSecondary,
-  //       borderColor: colors.colorSecondary,
-  //     },
-  //     '&:focus': {
-  //       boxShadow: `0 0 0 0.2rem rgba(${colors.colorSecondary},.5)`,
-  //     },
-  //   },
-  // })(Button);
+  let InverseButton = withStyles({
+    root: {
+      color: colors.colorSecondary,
+      backgroundColor: colors.colorPrimary,
+      "&:hover": {
+        backgroundColor: colors.colorPrimary,
+      },
+    },
+  })(Button);
 
-  if (props.variant === "outlined") {
+  if (props.inverse && props.variant === "outlined") {
+    InverseButton = withStyles({
+      root: {
+        color: colors.colorPrimary,
+        backgroundColor: colors.colorSecondary,
+        border: "1px solid" + colors.colorPrimary,
+        "&:hover": {
+          backgroundColor: colors.colorSecondary,
+        },
+      },
+    })(Button);
+  }
+
+  if (props.inverse) {
     return (
-      <ThemeProvider theme={props.inverse ? inverseTheme : theme}>
-        <Button
+      <ThemeProvider theme={theme}>
+        <InverseButton
           onClick={props.clicked}
-          disabled={props.disabled}
-          variant="outlined"
           size={props.size}
-          color="primary"
+          disabled={props.disabled}
+          variant={props.variant}
         >
           {props.children}
-        </Button>
+        </InverseButton>
       </ThemeProvider>
     );
   }
-  if (props.variant === "full") {
-    return (
-      <ThemeProvider theme={props.inverse ? inverseTheme : theme }>
-        <Button
-          onClick={props.clicked}
-          disabled={props.disabled}
-          variant="contained"
-          size={props.size}
-          color="primary"
-        >
-          {props.children}
-        </Button>
-      </ThemeProvider>
-    );
-  }
+
   if (props.link) {
     return (
-      <ThemeProvider theme={props.inverse ? inverseTheme : theme}>
+      <ThemeProvider theme={theme}>
         <Button
           onClick={props.clicked}
           disabled={props.disabled}
@@ -167,15 +137,17 @@ const CustomButton = (props) => {
   }
 
   return (
-    <Button
-      onClick={props.clicked}
-      variant={props.variant}
-      size={props.size}
-      color={props.color}
-      disabled={props.disabled}
-    >
-      {props.children}
-    </Button>
+    <ThemeProvider theme={theme}>
+      <Button
+        onClick={props.clicked}
+        disabled={props.disabled}
+        variant={props.variant}
+        size={props.size}
+        color="primary"
+      >
+        {props.children}
+      </Button>
+    </ThemeProvider>
   );
 };
 
