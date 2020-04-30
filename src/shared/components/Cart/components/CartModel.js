@@ -23,6 +23,7 @@ class CartModel {
       cart.products = [...cart.products, { product, quantity }];
     }
     cart.totalPrice = cart.totalPrice + product.price * quantity;
+   
     //save cart to local storage
     localStorage.setItem("cart", JSON.stringify(cart));
   }
