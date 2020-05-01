@@ -14,14 +14,14 @@ const Colors = (props) => {
   });
 
   return (
-    <div className='colors'>
+    <div className="colors">
       <div className="colors__inputs">
         {availableColors.map((color) => (
           <span
             key={color}
+            className={`color`}
             onClick={props.clicked}
             style={{ backgroundColor: color }}
-            className="color"
           ></span>
         ))}
       </div>

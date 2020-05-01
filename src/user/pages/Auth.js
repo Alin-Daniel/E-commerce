@@ -8,16 +8,19 @@ import Button from "../../shared/components/UIElements/Button";
 import "./Auth.scss";
 
 const Auth = (props) => {
-  const [formState, inputHandler] = useForm({
-    email: {
-      value: "",
-      isValid: false,
+  const [formState, inputHandler] = useForm(
+    {
+      email: {
+        value: "",
+        isValid: false,
+      },
+      password: {
+        value: "",
+        isValid: false,
+      },
     },
-    password: {
-      value: "",
-      isValid: false,
-    },
-  }, false);
+    false
+  );
 
   return (
     <Modal
@@ -25,7 +28,7 @@ const Auth = (props) => {
       handleClose={props.handleClose}
       open={props.open}
     >
-      <form className='auth-form' action="">
+      <form className="auth-form" action="">
         <Input
           placeholder="example@email.com"
           id="email"
@@ -45,7 +48,9 @@ const Auth = (props) => {
           validators={[minLength(5)]}
           errorMessage="Enter a valid password(min 5 characters)"
         />
-        <Button disabled={!formState.isValid} variant='full'>Login</Button>
+        <Button variant="contained" disabled={!formState.isValid}>
+          Login
+        </Button>
       </form>
     </Modal>
   );
