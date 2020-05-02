@@ -48,9 +48,7 @@ const theme = createMuiTheme({
   },
 });
 
-
 const CustomButton = (props) => {
-  
   const theme2 = createMuiTheme({
     palette: {
       primary: {
@@ -92,10 +90,15 @@ const CustomButton = (props) => {
     })(Button);
   }
 
+  if (props.textButton) {
+    return <Button>{props.children}</Button>;
+  }
+
   if (props.inverse) {
     return (
       <ThemeProvider theme={theme}>
         <InverseButton
+          type={props.type}
           onClick={props.clicked}
           size={props.size}
           disabled={props.disabled}
@@ -111,6 +114,7 @@ const CustomButton = (props) => {
     return (
       <ThemeProvider theme={theme}>
         <Button
+          type={props.type}
           onClick={props.clicked}
           disabled={props.disabled}
           // variant="contained"
@@ -139,6 +143,7 @@ const CustomButton = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <Button
+        type={props.type}
         onClick={props.clicked}
         disabled={props.disabled}
         variant={props.variant}

@@ -13,6 +13,7 @@ import SingleProduct from "./products/pages/SingleProduct";
 import CartSummary from "./shared/components/Cart/pages/CartSummary";
 import Cart from "./shared/components/Cart/components/CartModel";
 import Auth from "./user/pages/Auth";
+import { AuthContext } from "./shared/context/auth-context";
 
 import "./App.scss";
 
@@ -20,6 +21,7 @@ const App = () => {
   const [showCart, setShowCart] = useState(false);
   const [cart, setCart] = useState();
   const [authModal, setAuthModal] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     setCart(Cart.getCart);
@@ -50,6 +52,13 @@ const App = () => {
     setCart(Cart.getCart());
   };
 
+  const login = () => {
+    setLoggedIn(true)
+  };
+  const logout = () => {
+    setLoggedIn(false);
+  };
+
   let routes;
   routes = (
     <Switch>
@@ -69,23 +78,29 @@ const App = () => {
     </Switch>
   );
   return (
-    <div className="App">
-      <Router>
-        <MainNavigation
-          cart={cart}
-          show={showCart}
-          showAuthModal={showAuthModalHandler}
-          toggleCart={toggleShowCartHandler}
-          deleteProduct={deleteProductHandler}
-        />
-        {authModal && (
-          <Auth handleClose={closeAuthModalHandler} open={authModal} />
-        )}
-        {/* <main> */}
-        {routes}
-        {/* </main> */}
-      </Router>
-    </div>
+    <AuthContext.Provider value={{
+      login: login,
+      logout: logout,
+      isLoggedIn: loggedIn
+    }}>
+      <div className="App">
+        <Router>
+          <MainNavigation
+            cart={cart}
+            show={showCart}
+            showAuthModal={showAuthModalHandler}
+            toggleCart={toggleShowCartHandler}
+            deleteProduct={deleteProductHandler}
+          />
+          {authModal && (
+            <Auth handleClose={closeAuthModalHandler} open={authModal} />
+          )}
+          {/* <main> */}
+          {routes}
+          {/* </main> */}
+        </Router>
+      </div>
+    </AuthContext.Provider>
   );
 };
 

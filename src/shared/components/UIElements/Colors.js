@@ -21,7 +21,7 @@ const Colors = (props) => {
             key={color}
             className={`color`}
             onClick={props.clicked}
-            style={{ backgroundColor: color }}
+            style={{ backgroundColor: color}}
           ></span>
         ))}
       </div>

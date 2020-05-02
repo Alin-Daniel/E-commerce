@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../context/auth-context";
 
 // import Badge from "@material-ui/core/Badge";
 // import { withStyles } from "@material-ui/core/styles";
@@ -22,6 +23,7 @@ const NavLinks = (props) => {
   // }))(Badge);
 
   const products = props.cart && props.cart.products.length;
+  const auth = useContext(AuthContext);
 
   return (
     <React.Fragment>
@@ -43,23 +45,34 @@ const NavLinks = (props) => {
         {/* <li>
           <NavLink onClick={props.showAuthModal} to="/">Login</NavLink>
         </li> */}
-        <Button
-          clicked={props.showAuthModal}
-          fontSize="1.4rem"
-          link
-          // color="primary"
-          // variant="outlined"
-        >
-          Login
-        </Button>
-        <Button
-          fontSize="1.4rem"
-          link
-          // color="primary"
-          // variant="outlined"
-        >
-          Logout
-        </Button>
+        {!auth.isLoggedIn && (
+          <li>
+            {" "}
+            <Button
+              clicked={props.showAuthModal}
+              fontSize="1.4rem"
+              link
+              // color="primary"
+              // variant="outlined"
+            >
+              Login
+            </Button>{" "}
+          </li>
+        )}
+        {auth.isLoggedIn && (
+          <li>
+            {" "}
+            <Button
+              fontSize="1.4rem"
+              link
+              clicked={auth.logout}
+              // color="primary"
+              // variant="outlined"
+            >
+              Logout
+            </Button>{" "}
+          </li>
+        )}
         <Button
           products={products}
           clicked={props.clicked}

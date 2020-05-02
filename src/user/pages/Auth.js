@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Modal from "../../shared/components/UIElements/Modal";
 import Input from "../../shared/components/FormElements/Input";
 import useForm from "../../shared/hooks/use-form";
 import { isEmail, minLength } from "../../shared/util/validators";
 import Button from "../../shared/components/UIElements/Button";
+import { AuthContext } from "../../shared/context/auth-context";
 
 import "./Auth.scss";
 
@@ -22,13 +23,21 @@ const Auth = (props) => {
     false
   );
 
+  const auth = useContext(AuthContext);
+
+  const authModalHandler = (event) => {
+    event.preventDefault();
+    auth.login();
+    props.handleClose();
+  };
+
   return (
     <Modal
       title="Authenticate"
       handleClose={props.handleClose}
       open={props.open}
     >
-      <form className="auth-form" action="">
+      <form className="auth-form" onSubmit={authModalHandler}>
         <Input
           placeholder="example@email.com"
           id="email"
@@ -48,7 +57,7 @@ const Auth = (props) => {
           validators={[minLength(5)]}
           errorMessage="Enter a valid password(min 5 characters)"
         />
-        <Button variant="contained" disabled={!formState.isValid}>
+        <Button type='submit' variant="contained" disabled={!formState.isValid}>
           Login
         </Button>
       </form>
